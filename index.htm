@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/jquery-ui.min.css">
+        <style>
+        #map {
+            width: 977px;
+            height: 837px;
+        }
+        </style>
+        
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/leaflet.js"></script>
+        
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui.min.js"></script>        
+        <script src="js/leaflet.SliderControl.min.js"></script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <script>
+		
+		
+		
+		//var textfile = fs.readFileSync("./data/files.txt").toString('utf-8');
+		//var filenames = textfile.split("\n")
+        //53.5079755,-1.6138042
+        var map = L.map('map').setView([53.5079755,-1.6138042], 19);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: 21,
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+		}).addTo(map);
+		
+		var slice_bounds = [[53.507511702749596,-1.6142223035605059],[53.50846669819477,-1.6134354646368323]];
+		
+		var slice_files = ["data/slice001_76.png", "data/slice002_75.png", "data/slice003_74.png", "data/slice004_73.png", "data/slice005_72.png", "data/slice006_71.png", "data/slice007_70.png", "data/slice008_69.png", "data/slice009_68.png", "data/slice010_67.png", "data/slice011_66.png", "data/slice012_65.png", "data/slice013_64.png", "data/slice014_63.png", "data/slice015_62.png", "data/slice016_61.png", "data/slice017_60.png", "data/slice018_59.png", "data/slice019_58.png", "data/slice020_57.png", "data/slice021_56.png", "data/slice022_55.png", "data/slice023_54.png", "data/slice024_53.png", "data/slice025_52.png", "data/slice026_51.png", "data/slice027_50.png", "data/slice028_49.png", "data/slice029_48.png", "data/slice030_47.png", "data/slice031_46.png", "data/slice032_45.png", "data/slice033_44.png", "data/slice034_43.png", "data/slice035_42.png", "data/slice036_41.png", "data/slice037_40.png", "data/slice038_39.png", "data/slice039_38.png", "data/slice040_37.png", "data/slice041_36.png", "data/slice042_35.png", "data/slice043_34.png", "data/slice044_33.png", "data/slice045_32.png", "data/slice046_31.png", "data/slice047_30.png", "data/slice048_29.png", "data/slice049_28.png", "data/slice050_27.png", "data/slice051_26.png", "data/slice052_25.png", "data/slice053_24.png", "data/slice054_23.png", "data/slice055_22.png", "data/slice056_21.png", "data/slice057_20.png", "data/slice058_19.png", "data/slice059_18.png", "data/slice060_17.png", "data/slice061_16.png", "data/slice062_15.png", "data/slice063_14.png", "data/slice064_13.png", "data/slice065_12.png", "data/slice066_11.png", "data/slice067_10.png", "data/slice068_9.png", "data/slice069_8.png", "data/slice070_7.png", "data/slice071_6.png", "data/slice072_5.png", "data/slice073_4.png", "data/slice074_3.png", "data/slice075_2.png", "data/slice076_1.png", "data/slice077_0.png"];
+		
+		slice_files.sort();
+		const slices = [];
+		for (let i = 0; i < slice_files.length; ++i) {
+			var slice_n = slice_files[i];
+			var slice_Layer_n = new L.imageOverlay(slice_n, slice_bounds);
+			slice_Layer_n._initImage();
+			slices[i] = slice_Layer_n;
+		} 
+        
+        layerGroup = L.layerGroup(slices);
+        var sliderControl = L.control.sliderControl({layer: layerGroup, follow: true});
+		map.addControl(sliderControl);
+		sliderControl.startSlider();
+        
+        
+        //map.addLayer(layer_slice77_0);
+		
+		</script>
+
+
+</body>
+
